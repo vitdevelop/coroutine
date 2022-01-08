@@ -10,39 +10,39 @@ void func4(void *args);
 void sig_handler(int signal);
 
 void func1(void *args) {
-  // printf("Enter func 1");
+  printf("Enter func 1\n");
 
   co_spawn(func2, NULL);
 
-  // printf("Resume func 1");
+  printf("Resume func 1\n");
 }
 
 void func2(void *args) {
-  // printf("Enter func 2");
+  printf("Enter func 2\n");
 
   co_spawn(func3, NULL);
 
-  // printf("Resume func 2");
+  printf("Resume func 2\n");
 }
 
 void func3(void *args) {
-  // printf("Enter func 3");
+  printf("Enter func 3\n");
 
   co_spawn(func4, NULL);
 
-  // printf("Resume func 3");
+  printf("Resume func 3\n");
 }
 
 void func4(void *args) {
-  // printf("Enter func 4\n");
+  printf("Enter func 4\n");
 
   co_yield();
 
-  // printf("Resume func 4\n");
+  printf("Resume func 4\n");
 }
 
 void sig_handler(int signal) {
-  // printf("Handled %d\n", signal);
+  printf("Handled %d\n", signal);
   exit(EXIT_FAILURE);
 }
 
@@ -53,14 +53,12 @@ int main(int argc, char *argv[]) {
   signal(SIGSEGV, sig_handler);
   initScheduler();
 
-  for (int i = 0; i < 1000000; i++) {
-    co_spawn(func1, NULL);
-  }
+  co_spawn(func1, NULL);
 
   co_spawn(func1, NULL);
   co_spawn(func2, NULL);
 
-  // printf("End of coroutines");
+  printf("End of coroutines\n");
 
   destroyScheduler();
 

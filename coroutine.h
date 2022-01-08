@@ -12,10 +12,9 @@
 typedef void (*co_func)(void *);
 
 enum CoroutineStatus {
-  COROUTINE_STATE_READY = 0,
-  COROUTINE_STATE_RUNNING = 1,
-  COROUTINE_STATE_SUSPEND = 2,
-  COROUTINE_STATE_DONE = 3,
+  COROUTINE_STATE_RUNNING = 0,
+  COROUTINE_STATE_SUSPEND = 1,
+  COROUTINE_STATE_DONE = 2,
 };
 
 struct co_scheduler_t;
