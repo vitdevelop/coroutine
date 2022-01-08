@@ -46,9 +46,9 @@ typedef struct co_scheduler_t {
   struct co_scheduler_queue_t *tail;
 } co_scheduler_t;
 
-co_scheduler_t *initScheduler(void);
-void destroyScheduler(co_scheduler_t *scheduler);
-void co_spawn(co_scheduler_t *scheduler, co_func func, void *args);
-void co_yield(coroutine_t *coroutine);
+void initScheduler(void);
+void destroyScheduler(void);
+void co_spawn(co_func func, void *args);
+void co_yield(void);
 
 #endif /* __COROUTINE_H__ */
